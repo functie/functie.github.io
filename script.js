@@ -70,7 +70,7 @@ function checkKeyDown(e) {
 
 	    equations.push(prompt("Equation?"));
 
-		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.01) {
+		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.1) {
 			count++;
 
 			x/=25;
