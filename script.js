@@ -74,7 +74,7 @@ function checkKeyDown(e) {
 			count++;
 
 			x/=25;
-			functions.push((-eval(equations[equations.length-1]) + canvas.height/2)/25);
+			functions.push((-eval(equations[equations.length-1]) + canvas.height/2)*25);
 			x*=25;
 
 			ctx.beginPath();
