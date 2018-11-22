@@ -69,20 +69,24 @@ function checkKeyDown(e) {
     if (e.keyCode == '13') {
 	    equations.push(prompt("Equation?"));
 
-		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.01) {
+		for (var x = -canvas.width/2; x < canvas.width/2; x++) {
 			count++;
 
 			x/=25;
 			functions.push(-eval(equations[equations.length-1]) + canvas.height/2);
 
-			var xPos = x*25+canvas.width/2;
-			var yPos = (functions[count-1]-canvas.height/2)*25 + canvas.height/2;
+			var xPos1 = x*25+canvas.width/2;
+			var yPos1 = (functions[count-1]-canvas.height/2)*25 + canvas.height/2;
 
 			ctx.beginPath();
-			ctx.arc(xPos, yPos, 1, 0, 2*Math.PI);
-			ctx.closePath();
-			ctx.fillStyle = "black";
-			ctx.fill();
+			ctx.moveTo(xPos1,yPos1);
+			ctx.lineTo(xPos2,yPos2);
+			ctx.lineWidth = 3;
+			if(equations.length%7==1){ctx.strokeStyle = "blue";}else if(equations.length%7==2){ctx.strokeStyle = "red";}else if(equations.length%7==3){ctx.strokeStyle = "green";}else if(equations.length%7==4){ctx.strokeStyle = "yellow";}else if(equations.length%7==5){ctx.strokeStyle = "orange";}else if(equations.length%7==6){ctx.strokeStyle = "pink";}else if(equations.length%7==0){ctx.strokeStyle = "purple";}  
+			ctx.stroke();
+
+			var xPos2 = x*25+canvas.width/2;
+			var yPos2 = (functions[count-1]-canvas.height/2)*25 + canvas.height/2;
 
 			x*=25;
 		}
