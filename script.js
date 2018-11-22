@@ -67,21 +67,24 @@ function checkKeyDown(e) {
     e = e || window.event;
 
     if (e.keyCode == '13') {
-
 	    equations.push(prompt("Equation?"));
 
 		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.01) {
 			count++;
 
 			x/=25;
-			functions.push((-eval(equations[equations.length-1]) + canvas.height/2)*25);
-			x*=25;
+			functions.push(-eval(equations[equations.length-1]) + canvas.height/2);
+
+			var xPos = x*25+canvas.width/2;
+			var yPos = (functions[count-1]-canvas.height/2)*25 + canvas.height/2;
 
 			ctx.beginPath();
-			ctx.arc(x+canvas.width/2, functions[count-1], 1, 0, 2*Math.PI);
+			ctx.arc(xPos, yPos, 1, 0, 2*Math.PI);
 			ctx.closePath();
 			ctx.fillStyle = "black";
 			ctx.fill();
+
+			x*=25;
 		}
 	}
 }
