@@ -1,7 +1,7 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
-canvas.setAttribute("width", 10000);
-canvas.setAttribute("height", 10000);
+canvas.setAttribute("width", window.innerWidth);
+canvas.setAttribute("height", window.innerHeight);
 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 function grid(){
@@ -70,7 +70,7 @@ function checkKeyDown(e) {
 
 	    equations.push(prompt("Equation?"));
 
-		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.1) {
+		for (var x = -canvas.width/2; x < canvas.width/2; x+=0.01) {
 			count++;
 
 			x/=25;
