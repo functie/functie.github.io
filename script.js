@@ -19,34 +19,34 @@ function grid(){
 	ctx.strokeStyle = "black";
 	ctx.stroke();
 
-	for (var x = canvas.width/2; x < canvas.width; x+=50) {
+	for (var x = canvas.width/2; x < canvas.width; x+=25) {
 		ctx.beginPath();
-		ctx.moveTo(50+x,0);
-		ctx.lineTo(50+x,canvas.height);
+		ctx.moveTo(25+x,0);
+		ctx.lineTo(25+x,canvas.height);
 		ctx.lineWidth=0.5;
 		ctx.strokeStyle = "black";
 		ctx.stroke();
 	}
-	for (var y = canvas.height/2; y < canvas.height; y+=50) {
+	for (var y = canvas.height/2; y < canvas.height; y+=25) {
 		ctx.beginPath();
-		ctx.moveTo(0,50+y);
-		ctx.lineTo(canvas.width+y,50+y);
+		ctx.moveTo(0,25+y);
+		ctx.lineTo(canvas.width+y,25+y);
 		ctx.lineWidth=0.5;
 		ctx.strokeStyle = "black";
 		ctx.stroke();
 	}
-	for (var x = canvas.width/2; x > -50; x-=50) {
+	for (var x = canvas.width/2; x > -25; x-=25) {
 		ctx.beginPath();
-		ctx.moveTo(50+x,0);
-		ctx.lineTo(50+x,canvas.height);
+		ctx.moveTo(25+x,0);
+		ctx.lineTo(25+x,canvas.height);
 		ctx.lineWidth=0.5;
 		ctx.strokeStyle = "black";
 		ctx.stroke();
 	}
-	for (var y = canvas.height/2; y > -50; y-=50) {
+	for (var y = canvas.height/2; y > -25; y-=25) {
 		ctx.beginPath();
-		ctx.moveTo(0,50+y);
-		ctx.lineTo(canvas.width+y,50+y);
+		ctx.moveTo(0,25+y);
+		ctx.lineTo(canvas.width+y,25+y);
 		ctx.lineWidth=0.5;
 		ctx.strokeStyle = "black";
 		ctx.stroke();
