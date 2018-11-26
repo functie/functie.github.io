@@ -26,23 +26,29 @@ function draw(){
 	for(i = 0; i < functions.length; i++){
 		xPos2 = "."; yPos2 = ".";
 		for(z = 0; z < functions[i].length; z++){
-			if(functions[i][z]<canvas.height&&functions[i][z]>0){
-				var xPos1 = z/20;
-				var yPos1 = functions[i][z];
+			//if(functions[i][z]>canvas.height&&functions[i][z-1]<canvas.height){functions[i][z] = canvas.height;}else if(functions[i][z]>canvas.height){functions[i][z] = ".";}
+			//if(functions[i][z]<0&&functions[i][z-1]>0){functions[i][z] = 0;}else if(functions[i][z]<0){functions[i][z] = ".";}
+			var xPos1 = z/20;
+			var yPos1 = functions[i][z];
 
-				ctx.beginPath();
-				ctx.moveTo(xPos1,yPos1);
-				ctx.lineTo(xPos2,yPos2);
-				ctx.strokeStyle = functions[i]["color"];
-				ctx.lineWidth = 3*lineWidth;
-				ctx.stroke();
+			ctx.beginPath();
+			ctx.moveTo(xPos1,yPos1);
+			ctx.lineTo(xPos2,yPos2);
+			ctx.strokeStyle = functions[i]["color"];
+			ctx.lineWidth = 3*lineWidth;
+			ctx.stroke();
 
-				var xPos2 = z/20;
-				var yPos2 = functions[i][z];
-			}
+			var xPos2 = z/20;
+			var yPos2 = functions[i][z];
 		}
 	}
 }
+
+document.getElementById("textbox").onclick = function(){
+	document.getElementById("textbox").style.border = "3px solid black";
+	document.getElementById("textbox").style.marginTop = "5px";
+	document.getElementById("textbox").style.marginLeft = "5px";
+} 
 
 var functions = [];
 
@@ -53,23 +59,31 @@ function checkKeyDown(e) {
     e = e || window.event;
 
     if (e.keyCode == '13') {
-    	var Equation = prompt("Equation?");
-    	var arr = [];
-		functions.push(arr);
-		for (var x =-window.innerWidth/2; x < window.innerWidth/2; x+=0.05) {
-			try {
-				if(Equation != ""){
-					functions[functions.length-1].push(-eval(Equation) + window.innerHeight/2);
-					functions[functions.length-1]["color"] = randomColor();
-				}else{
-					alert("That is not a correct function. Some correct functions are: '3*x+7', 'x**2/Math.sin(x)'.");
-					var Equation = prompt("Equation?");
+    	document.getElementById("textbox").style.border = "3px solid black";
+    	document.getElementById("textbox").style.marginTop = "5px";
+		document.getElementById("textbox").style.marginLeft = "5px";
+    	var equation = document.getElementById("textbox").value;
+    	document.getElementById("textbox").value = "";
+		try {
+			if(equation != ""){
+				var arr = [];
+				functions.push(arr);
+				functions[functions.length-1]["color"] = randomColor();
+				document.getElementById('field').innerHTML += "<font style = 'color: " + functions[functions.length-1]["color"] + ";'> &nbsp;&nbsp;" + equation + "</font><br>";
+				for (var x =-window.innerWidth/2; x < window.innerWidth/2; x+=0.05) {
+					functions[functions.length-1].push(-eval(equation) + window.innerHeight/2);
+					document.getElementById("field").style.height = 44 + functions.length*18.52 + "px";
 				}
-			} catch (e) {
-			    if (e instanceof ReferenceError || e == "") {
-			        alert("That is not a correct function. Some correct functions are: '3*x+7', 'x**2/Math.sin(x)'.");
-			        var Equation = prompt("Equation?");
-			    }
+			}else{
+				document.getElementById("textbox").style.border = "5px solid red";
+				document.getElementById("textbox").style.marginTop = "3px";
+				document.getElementById("textbox").style.marginLeft = "3px";
+			}
+		} catch (e) {
+		    if (e instanceof ReferenceError) {
+		        document.getElementById("textbox").style.border = "5px solid red";
+		        document.getElementById("textbox").style.marginTop = "3px";
+				document.getElementById("textbox").style.marginLeft = "3px";
 			}
 		}
 		draw();
