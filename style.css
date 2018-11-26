@@ -17,8 +17,8 @@ body {
 	margin-left: 20px;
 	border: 1px solid black;
 	background-color: white;
-	width: 172.8px;
-	height: 34px;
+	min-width: 172.8px;
+	min-height: 34px;
 }
 
 #textbox {

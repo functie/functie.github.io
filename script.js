@@ -69,10 +69,9 @@ function checkKeyDown(e) {
 				var arr = [];
 				functions.push(arr);
 				functions[functions.length-1]["color"] = randomColor();
-				document.getElementById('field').innerHTML += "<font style = 'color: " + functions[functions.length-1]["color"] + ";'> &nbsp;&nbsp;" + equation + "</font><br>";
+				document.getElementById('field').innerHTML += "<font id='function"+functions.length+"' onclick='display("+functions.length+")' style = 'color: " + functions[functions.length-1]["color"] + ";'> &nbsp;&nbsp;" + equation + "</font><br>";
 				for (var x =-window.innerWidth/2; x < window.innerWidth/2; x+=0.05) {
 					functions[functions.length-1].push(-eval(equation) + window.innerHeight/2);
-					document.getElementById("field").style.height = 44 + functions.length*18.52 + "px";
 				}
 			}else{
 				document.getElementById("textbox").style.border = "5px solid red";
@@ -257,6 +256,14 @@ function trackTransforms(ctx){
         pt.x=x; pt.y=y;
         return pt.matrixTransform(xform.inverse());
     }
+}
+
+function display(x){
+	functions.splice(x-1,1);
+	var elem = document.getElementById("function"+x);
+    elem.parentNode.removeChild(elem);
+    document.getElementById("field").style.height = 34 + functions.length*25.2 + "px";
+	draw();
 }
 
 draw();
